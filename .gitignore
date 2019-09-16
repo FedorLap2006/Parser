@@ -1,0 +1,24 @@
+
+
+#Linux
+# Ignoring all files in catalogs:
+.vscode/
+
+# Ignoring all files in all catalogs
+**/*.o
+#Makefile_debug
+
+# Ignoring all executable files in all catalogs
+**/*.x
+**/*.elf
+**/*.code-workspace
+
+#Windows
+# Ignoring all files in catalogs:
+.vs/
+Debug/
+Release/
+Parser/Debug
+Parser/Release
+# Ignoring all files in all catalogs
+*.vcxproj*
