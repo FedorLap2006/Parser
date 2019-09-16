@@ -1,24 +1,15 @@
 #pragma once
 
-namespace prs
+namespace st
 {
 	class Parser
 	{
 	public:
-		Parser(char* path_file_input = nullptr, char* path_file_output = nullptr)
-			:	path_file_input_(path_file_input),
-				path_file_output_(path_file_output)
-		{
-			std::cout << path_file_input_ << std::endl;
-			std::cout << path_file_output_ << std::endl;
-		}
-		//~Parser();
+		Parser(const std::string& path_file_input, const std::string& path_file_output);
+		~Parser();
 
 	private:
-		char* path_file_input_;
-		char* path_file_output_;
-
-		FILE* file_input;
-		FILE* file_output;
+		std::ifstream file_input_;
+		std::ofstream file_output_;
 	};
 }
