@@ -22,3 +22,4 @@ Parser/Debug
 Parser/Release
 # Ignoring all files in all catalogs
 *.vcxproj*
+*.txt

@@ -1,7 +1,6 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <map>
 
 #include <execution>
 
@@ -14,7 +13,9 @@ int main(const int argc, const char* argv[])
 		if (argc < 3)
 			throw std::runtime_error("Invalid Arguments\nUse: Parser.exe <path_input> <path_output>");
 
-		st::Parser prarser(static_cast<std::string>(argv[1]), static_cast<std::string>(argv[2]));
+		st::Parser parser(static_cast<std::string>(argv[1]), static_cast<std::string>(argv[2]));
+
+		parser.count_all_words();
 	}
 	catch (std::exception& exception)
 	{
@@ -27,8 +28,6 @@ int main(const int argc, const char* argv[])
 		std::cerr << "Expresion of an undetermined type." << std::endl;
 		return EXIT_FAILURE;
 	}
-
-
 
 	return EXIT_SUCCESS;
 }

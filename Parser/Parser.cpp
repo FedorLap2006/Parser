@@ -1,7 +1,12 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+
+#include <algorithm>
+#include <vector>
+#include <unordered_map>
 #include <map>
+#include <set>
 
 #include <execution>
 
@@ -33,7 +38,32 @@ st::Parser::~Parser()
 	file_output_.close();
 }
 
-void count_all_words()
+int st::Parser::count_all_words()
 {
-	std::map<std::string, int> result;
+	std::unordered_map<std::string, size_t> result;
+
+	std::string buff;
+
+	while (file_input_)
+	{
+		file_input_ >> buff;
+
+		if (file_input_)
+			result[buff]++;
+	}
+
+	std::vector<std::pair<size_t, std::string>> items(result.size());
+	size_t i = 0;
+	for (auto iter = result.begin(); iter != result.end(); iter++, i++)
+	{
+		items[i].first = iter->second;
+		items[i].second = iter->first;
+	}
+
+	std::sort(items.begin(), items.end(), std::greater<std::pair<size_t, std::string>>());
+
+	for (auto iter = items.begin(); iter != items.end(); iter++)
+		file_output_ << iter->second << " " << iter->first << '\n';
+
+	return EXIT_SUCCESS;
 }
