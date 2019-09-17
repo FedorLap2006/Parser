@@ -10,6 +10,9 @@ namespace st
 
 		int count_all_words();
 
+		long find_word(const std::string& str);
+		int replace_all_ch(const char ch, const char new_ch);
+
 	private:
 		std::ifstream file_input_;
 		std::ofstream file_output_;

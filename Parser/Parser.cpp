@@ -5,10 +5,6 @@
 #include <algorithm>
 #include <vector>
 #include <unordered_map>
-#include <map>
-#include <set>
-
-#include <execution>
 
 #include "Parser.h"
 
@@ -52,18 +48,47 @@ int st::Parser::count_all_words()
 			result[buff]++;
 	}
 
-	std::vector<std::pair<size_t, std::string>> items(result.size());
+	std::vector<std::pair<size_t, std::string>> sortered_result(result.size());
 	size_t i = 0;
 	for (auto iter = result.begin(); iter != result.end(); iter++, i++)
 	{
-		items[i].first = iter->second;
-		items[i].second = iter->first;
+		sortered_result[i].first = iter->second;
+		sortered_result[i].second = iter->first;
 	}
 
-	std::sort(items.begin(), items.end(), std::greater<std::pair<size_t, std::string>>());
+	std::sort(sortered_result.begin(), sortered_result.end(), std::greater<std::pair<size_t, std::string>>());
 
-	for (auto iter = items.begin(); iter != items.end(); iter++)
+	for (auto iter = sortered_result.begin(); iter != sortered_result.end(); iter++)
 		file_output_ << iter->second << " " << iter->first << '\n';
+
+	return EXIT_SUCCESS;
+}
+
+long st::Parser::find_word(const std::string& str)
+{
+	std::string buff;
+
+	while (file_input_)
+	{
+		file_input_ >> buff;
+
+		if (str == buff)
+			return static_cast<long>(file_input_.tellg()) - buff.size();
+	}
+
+	return -1;
+}
+
+int st::Parser::replace_all_ch(const char ch, const char new_ch)
+{
+	char buff;
+	while (file_input_.get(buff))
+	{
+		if (buff == ch)
+			file_output_ << new_ch;
+		else
+			file_output_ << buff;
+	}
 
 	return EXIT_SUCCESS;
 }

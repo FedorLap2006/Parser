@@ -15,7 +15,10 @@ int main(const int argc, const char* argv[])
 
 		st::Parser parser(static_cast<std::string>(argv[1]), static_cast<std::string>(argv[2]));
 
-		parser.count_all_words();
+		//parser.count_all_words();
+		//std::cout << parser.find_word("1") << std::endl;
+
+		parser.replace_all_ch('a', '2');
 	}
 	catch (std::exception& exception)
 	{
